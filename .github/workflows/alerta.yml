@@ -1,0 +1,23 @@
+name: Notificación de Despliegue ntfy
+
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  enviar_alerta:
+    runs-on: ubuntu-latest 
+
+    steps:
+      - name: Obtener el código del repositorio
+        uses: actions/checkout@v4
+
+      - name: Enviar notificación a ntfy.sh
+        
+        run: |
+          curl -H "Title: Actualización en main 🚀" \
+               -H "Tags: white_check_mark" \
+               -d "Se ha subido nuevo código al repositorio. ¡El Hola Mundo está en línea!" \
+               https://ntfy.sh/devops-itla
